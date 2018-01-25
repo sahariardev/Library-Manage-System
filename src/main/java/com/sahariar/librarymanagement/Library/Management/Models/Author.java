@@ -9,7 +9,11 @@ import javax.persistence.Id;
 @Entity
 public class Author {
 	
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Override
+	public String toString() {
+		return "Author [id=" + id + ", name=" + name + "]";
+	}
+	@GeneratedValue(strategy=GenerationType.AUTO)
     @Id
 	private int id;
 	private String name;
