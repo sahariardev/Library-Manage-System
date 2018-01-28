@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -17,10 +17,13 @@ public class Borrow {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
     private int id;
-	@OneToOne
+	
+	@ManyToOne
 	private User user;
-	@OneToMany
-	private List<Book> book;
+	
+	@OneToOne
+	private Book book;
+	
 	private Date borrowedDate;
 	private Date returnDate;
 	public int getId() {
@@ -35,10 +38,10 @@ public class Borrow {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Book> getBook() {
+	public Book getBook() {
 		return book;
 	}
-	public void setBook(List<Book> book) {
+	public void setBook(Book book) {
 		this.book = book;
 	}
 	public Date getBorrowedDate() {
@@ -53,6 +56,7 @@ public class Borrow {
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
+	
 	
 	
 	

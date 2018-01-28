@@ -6,38 +6,85 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Book {
+	
 	
 	
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	private int id;
 	
-	@OneToMany
-	private List<Author> author;
-	@OneToMany
-	private List<Category> category;
+    private String name;
+	private String description;
+	
+	
+	//relationships
+	@OneToOne(mappedBy="book")
+	private Borrow borrow;
+	
+	@ManyToMany(mappedBy="books")
+	private List<Author> authors;
+	
+	@ManyToMany(mappedBy="books")
+	private List<Author> categories;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<Author> getAuthor() {
-		return author;
+
+	public String getName() {
+		return name;
 	}
-	public void setAuthor(List<Author> author) {
-		this.author = author;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public List<Category> getCategory() {
-		return category;
+
+	public String getDescription() {
+		return description;
 	}
-	public void setCategory(List<Category> category) {
-		this.category = category;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+	public Borrow getBorrow() {
+		return borrow;
+	}
+
+	public void setBorrow(Borrow borrow) {
+		this.borrow = borrow;
+	}
+
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
+
+	public List<Author> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Author> categories) {
+		this.categories = categories;
+	}
+	
+	
+	
+	
+	
+	
 		
 	
 

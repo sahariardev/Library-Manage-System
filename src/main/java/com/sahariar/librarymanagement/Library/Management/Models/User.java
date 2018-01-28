@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -16,6 +17,11 @@ public class User {
 	private String address;
 	private String role;
 	private String password;
+	@OneToOne(mappedBy="user")
+	private Borrow borrow;
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -46,6 +52,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Borrow getBorrow() {
+		return borrow;
+	}
+	public void setBorrow(Borrow borrow) {
+		this.borrow = borrow;
+	}
+	
+	
+	
 	
 
 }

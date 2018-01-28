@@ -54,7 +54,7 @@ public class HomeController {
 		{
 			l.add(a);
 		}
-		b.setAuthor(l);
+		b.setAuthors(l);
 		
 		Iterable<Category> categories=categoryrepository.findAll();
 		List<Category> category=new ArrayList<Category>();
@@ -64,7 +64,7 @@ public class HomeController {
 			category.add(c);
 		}
 		
-		b.setCategory(category); 
+		//b.setCategories(category); 
 		
 	   bookrepository.save(b);
 		

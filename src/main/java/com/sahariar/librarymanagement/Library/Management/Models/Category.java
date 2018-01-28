@@ -1,9 +1,12 @@
 package com.sahariar.librarymanagement.Library.Management.Models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -14,6 +17,9 @@ public class Category {
 	private int id;
 	private String name;
 	private String description;
+	
+	@ManyToMany
+	private List<Book> books;
 	public int getId() {
 		return id;
 	}
@@ -32,5 +38,13 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public List<Book> getBooks() {
+		return books;
+	}
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+	
+	
 
 }
