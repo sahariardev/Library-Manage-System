@@ -1,9 +1,12 @@
 package com.sahariar.librarymanagement.Library.Management.Models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,8 +23,18 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Borrow borrow;
 	
+	@OneToMany(mappedBy="user")
+	private List<Penalty> penalty;
 	
 	
+	
+	
+	public List<Penalty> getPenalty() {
+		return penalty;
+	}
+	public void setPenalty(List<Penalty> penalty) {
+		this.penalty = penalty;
+	}
 	public int getId() {
 		return id;
 	}
