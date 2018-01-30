@@ -29,6 +29,7 @@ public class AdminController {
 		return "admin/showDeletedmessage";
 	}
 	
+	@RequestMapping("/addCategory")
 	public String  addCategory()
 	{
 		return "admin/addcategory";
@@ -37,6 +38,8 @@ public class AdminController {
 	{
 		return "admin/addcategory";
 	}
+	
+	@RequestMapping("/addAuthor")
 	public String addAuthor()
 	{
 		return "admin/addauthor";

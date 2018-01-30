@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header::header"></head>
+
+<body>
+	<div class="container mainContent">
+
+		<div class="topmar-50 bottommar-50">
+			<div class="dounbleborder center textColor2 pad10">Add New Category </div>
+
+			<div class="row">
+				<div class="col-md-3">
+				  
+				  <div th:replace="layouts/menu::menu">
+				  </div>
+				  
+				  
+				</div>
+
+				<div class="col-md-9">
+					<div class="formContainer whiteBack automar topmar-50  shadow">
+						<form>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Category name</label> <input
+									type="text" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" placeholder="Fiction" />
+								<small id="emailHelp" class="form-text text-muted">write
+									author full name</small>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Description</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1"
+									rows="6"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+
+
+</body>
+</html>
