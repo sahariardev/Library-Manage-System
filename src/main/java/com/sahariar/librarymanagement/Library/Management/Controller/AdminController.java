@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
 import com.sahariar.librarymanagement.Library.Management.Models.Author;
+import com.sahariar.librarymanagement.Library.Management.Models.Category;
 import com.sahariar.librarymanagement.Library.Management.Service.AuthorService;
+import com.sahariar.librarymanagement.Library.Management.Service.CategoryService;
 
 @Controller
 @RequestMapping("/admin")
@@ -16,6 +18,8 @@ public class AdminController {
 
 	@Autowired
 	AuthorService as;
+	@Autowired
+	CategoryService cs;
 	
 	
 	@RequestMapping("/dashboard")
@@ -40,14 +44,28 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/addCategory")
-	public String  addCategory()
+	public String  addCategory(Model model)
 	{
+		model.addAttribute("isMessage", false);
+		return "admin/addcategory";
+	}
+	@RequestMapping(value="/addCategory",method=RequestMethod.POST)
+	public String addCategoryTodatabase(WebRequest request,Model model)
+	{
+		Category category=new Category();
+		category.setName(request.getParameter("name"));
+		category.setDescription(request.getParameter("description"));
+	    cs.addCategory(category);
+		model.addAttribute("message", category.getName()+" added ");
+		model.addAttribute("isMessage", true);
 		return "admin/addcategory";
 	}
 	public String  deleteCategory()
 	{
 		return "admin/addcategory";
 	}
+	
+	
 	
 	@RequestMapping("/addAuthor")
 	public String addAuthor(Model model)

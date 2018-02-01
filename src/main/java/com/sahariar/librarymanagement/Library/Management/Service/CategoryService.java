@@ -13,18 +13,13 @@ public class CategoryService {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
-	public void addCategory()
+	public Category addCategory(Category category)
 	{
 		     
-		    Category n1=new Category();
-		    n1.setName("Fiction");
-		    n1.setDescription("Description of fiction");
-            Category c=categoryRepository.save(n1);
-            
-            System.out.println(c);
-            
-            
-	 	
+		   Category c=categoryRepository.save(category);
+		     
+		     return c;
+                    
 	}
 	
 	

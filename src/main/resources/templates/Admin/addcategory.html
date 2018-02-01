@@ -19,20 +19,23 @@
 
 				<div class="col-md-9">
 					<div class="formContainer whiteBack automar topmar-50  shadow">
-						<form>
+						<form method="post">
+						<div th:if="${isMessage}">
+						  <div th:text="${message}">One category added</div>
+						</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Category name</label> <input
-									type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" placeholder="Fiction" />
+									type="text" class="form-control" name="name" placeholder="Fiction" />
 								<small id="emailHelp" class="form-text text-muted">write
-									author full name</small>
+									category name</small>
 							</div>
 
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Description</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1"
+								<textarea class="form-control" name="description"
 									rows="6"></textarea>
 							</div>
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>
 					</div>
