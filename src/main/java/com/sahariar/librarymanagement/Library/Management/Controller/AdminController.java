@@ -1,5 +1,7 @@
 package com.sahariar.librarymanagement.Library.Management.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 
 import com.sahariar.librarymanagement.Library.Management.Models.Author;
+import com.sahariar.librarymanagement.Library.Management.Models.Book;
 import com.sahariar.librarymanagement.Library.Management.Models.Category;
 import com.sahariar.librarymanagement.Library.Management.Service.AuthorService;
+import com.sahariar.librarymanagement.Library.Management.Service.BookService;
 import com.sahariar.librarymanagement.Library.Management.Service.CategoryService;
 
 @Controller
@@ -20,6 +24,8 @@ public class AdminController {
 	AuthorService as;
 	@Autowired
 	CategoryService cs;
+	@Autowired 
+	BookService bs;
 	
 	
 	@RequestMapping("/dashboard")
@@ -30,10 +36,35 @@ public class AdminController {
 		return "admin/dashboard";
 	}
 	
-	public String addBook()
+	@RequestMapping(value="/addbook")
+	public String addBook(Model model)
 	{
+		List<Author> authors=as.getAll();
+		
+		model.addAttribute("isMessage", false);
+		model.addAttribute("authors", authors);
+		model.addAttribute("categories", cs.getAll());
 		return "admin/addBook";
 	}
+	@RequestMapping(value="/addbook", method=RequestMethod.POST)
+	public String addBooktodatabase(Model model,WebRequest request)
+	{
+		String author_id[]=request.getParameterValues("author");
+		String category_id[]=request.getParameterValues("category");
+		
+		
+		Book book=new Book();
+		book.setName(request.getParameter("name"));
+		book.setDescription(request.getParameter("description"));
+		book.setAuthors(as.getSpecefic(strArrayToInt(author_id)));
+		book.setCategories(cs.getSpecefic(strArrayToInt(category_id)));
+		Book b=bs.addBook(book);
+ 
+		model.addAttribute("isMessage", true);
+		model.addAttribute("message", b.getName()+" added.");
+		return "admin/addBook";
+	}
+	
 	public String editBook()
 	{
 		return "admin/editbook";
@@ -85,5 +116,13 @@ public class AdminController {
 		model.addAttribute("isMessage", true);
 		return "admin/addauthor";
 	}
-	
+	public int[] strArrayToInt(String arr[])
+	{
+		int intArr[]=new int[arr.length];
+		for(int c=0;c<arr.length;c++)
+		{
+			intArr[c]=Integer.parseInt(arr[c]);
+		}
+		return intArr;
+	}
 }

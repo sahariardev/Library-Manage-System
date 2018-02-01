@@ -30,7 +30,7 @@ public class Book {
 	private List<Author> authors;
 	
 	@ManyToMany(mappedBy="books")
-	private List<Author> categories;
+	private List<Category> categories;
 
 	public int getId() {
 		return id;
@@ -72,11 +72,11 @@ public class Book {
 		this.authors = authors;
 	}
 
-	public List<Author> getCategories() {
+	public List<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<Author> categories) {
+	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 	
