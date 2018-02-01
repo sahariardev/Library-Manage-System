@@ -16,6 +16,7 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	private int id;
+	private String email;
 	private String name;
 	private String address;
 	private String role;
@@ -29,6 +30,12 @@ public class User {
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public List<Penalty> getPenalty() {
 		return penalty;
 	}

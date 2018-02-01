@@ -20,18 +20,6 @@ import com.sahariar.librarymanagement.Library.Management.Service.CategoryService
 public class HomeController {
 
 	
-	@Autowired
-	AuthorRepository author;
-	
-	@Autowired
-	BookRepository bookrepository;
-	
-	@Autowired
-	CategoryRepository categoryrepository;
-	
-	@Autowired
-	CategoryService categoryservice;
-	
 	@RequestMapping("/")
 	public String getHome(WebRequest request)
 	{
@@ -42,32 +30,20 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping("/addBook")
-	public String addNewBook()
+	@RequestMapping("/404")
+	public String error()
 	{
-		Book b=new Book();
-        Iterable<Author> authors=author.findAll();
-		
-        List<Author> l=new ArrayList<Author>();
-        
-		for(Author a: authors)
-		{
-			l.add(a);
-		}
-		b.setAuthors(l);
-		
-		Iterable<Category> categories=categoryrepository.findAll();
-		List<Category> category=new ArrayList<Category>();
-		
-		for(Category c:categories)
-		{
-			category.add(c);
-		}
-		
-		//b.setCategories(category); 
-		
-	   bookrepository.save(b);
-		
-		return "home";
+		return "error";
 	}
+	
+	
+	@RequestMapping("/login")
+	public String login()
+	{
+		return "login";
+	}
+	
+	
+	
+
 }
