@@ -17,6 +17,8 @@ public class Borrow {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
     private int id;
+	//0 means no and 1 means yes
+	private int returned;
 	
 	@ManyToOne
 	private User user;

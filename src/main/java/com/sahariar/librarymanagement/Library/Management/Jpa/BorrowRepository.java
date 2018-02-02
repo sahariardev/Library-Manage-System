@@ -1,9 +1,12 @@
 package com.sahariar.librarymanagement.Library.Management.Jpa;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sahariar.librarymanagement.Library.Management.Models.Borrow;
 
-public interface BorrowRepository extends CrudRepository<Borrow, Integer> {
+public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
 
+	public List<Borrow> findByBookIdAndReturned(int id,int r);
 }

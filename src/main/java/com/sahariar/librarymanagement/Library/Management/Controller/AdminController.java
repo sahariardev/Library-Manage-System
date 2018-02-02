@@ -1,5 +1,7 @@
 package com.sahariar.librarymanagement.Library.Management.Controller;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.sahariar.librarymanagement.Library.Management.Models.Author;
 import com.sahariar.librarymanagement.Library.Management.Models.Book;
+import com.sahariar.librarymanagement.Library.Management.Models.Borrow;
 import com.sahariar.librarymanagement.Library.Management.Models.Category;
 import com.sahariar.librarymanagement.Library.Management.Models.User;
 import com.sahariar.librarymanagement.Library.Management.Service.AuthorService;
@@ -96,6 +99,31 @@ public class AdminController {
 		model.addAttribute("authors", as.getAll());
 		model.addAttribute("categories", cs.getAll());
 		return "admin/addBook";
+	}
+	
+	@RequestMapping("/issueBook")
+	public String issuebook(Model model)
+	{
+		 model.addAttribute("isMessage", false);
+		return "admin/issueBook";
+	}
+	@RequestMapping(value="/",method=RequestMethod.POST)
+	public String issueBooktoUser(Model model,WebRequest request)
+	{
+		boolean isAvailable=true;
+		int book_id=Integer.parseInt(request.getParameter("book_id"));
+		int user_id=Integer.parseInt(request.getParameter("user_id"));
+		if(bs.isAvailable(book_id))
+		{
+			model.addAttribute("Message", "Book is already taken.");
+			return "admin/issueBook";
+		}
+		
+		Borrow borrow=new Borrow();
+		borrow.setBook(bs.getOne(book_id));
+		borrow.setUser(us.getOne(user_id));
+		borrow.setBorrowedDate(new Date());
+		return "admin/issueBook";
 	}
 	
 	public String editBook()

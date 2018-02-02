@@ -18,4 +18,8 @@ public class UserService {
 		return ur.save(user);
 	}
 	
+	public User getOne(int id)
+	{
+		return ur.findOne(id);
+	}
 }
