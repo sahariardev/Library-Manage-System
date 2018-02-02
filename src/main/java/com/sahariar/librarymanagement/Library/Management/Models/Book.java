@@ -1,11 +1,14 @@
 package com.sahariar.librarymanagement.Library.Management.Models;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -26,11 +29,15 @@ public class Book {
 	@OneToOne(mappedBy="book")
 	private Borrow borrow;
 	
-	@ManyToMany(mappedBy="books")
-	private List<Author> authors;
+	@ManyToMany
+	@JoinTable(name="book_category",joinColumns=@JoinColumn(name="book_id")
+	,inverseJoinColumns=@JoinColumn(name="category_id"))
+	private Set<Category> categories;
 	
-	@ManyToMany(mappedBy="books")
-	private List<Category> categories;
+	@ManyToMany
+	@JoinTable(name="book_author",joinColumns=@JoinColumn(name="book_id")
+	,inverseJoinColumns=@JoinColumn(name="author_id"))
+	private Set<Author> authors;
 
 	public int getId() {
 		return id;
@@ -64,21 +71,29 @@ public class Book {
 		this.borrow = borrow;
 	}
 
-	public List<Author> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(List<Author> authors) {
-		this.authors = authors;
-	}
-
-	public List<Category> getCategories() {
+	public Set<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<Category> categories) {
+	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
 	}
+
+	public Set<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", description=" + description + ", borrow=" + borrow
+				+ ", categories=" + categories + ", authors=" + authors + "]";
+	} 
+	
+	
 	
 	
 	

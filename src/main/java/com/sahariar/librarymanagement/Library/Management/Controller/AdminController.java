@@ -39,10 +39,9 @@ public class AdminController {
 	@RequestMapping(value="/addbook")
 	public String addBook(Model model)
 	{
-		List<Author> authors=as.getAll();
-		
+	
 		model.addAttribute("isMessage", false);
-		model.addAttribute("authors", authors);
+		model.addAttribute("authors", as.getAll());
 		model.addAttribute("categories", cs.getAll());
 		return "admin/addBook";
 	}
@@ -56,12 +55,17 @@ public class AdminController {
 		Book book=new Book();
 		book.setName(request.getParameter("name"));
 		book.setDescription(request.getParameter("description"));
+		
 		book.setAuthors(as.getSpecefic(strArrayToInt(author_id)));
 		book.setCategories(cs.getSpecefic(strArrayToInt(category_id)));
+		
+		
 		Book b=bs.addBook(book);
- 
-		model.addAttribute("isMessage", true);
+		System.out.println(b);
+        model.addAttribute("isMessage", true);
 		model.addAttribute("message", b.getName()+" added.");
+		model.addAttribute("authors", as.getAll());
+		model.addAttribute("categories", cs.getAll());
 		return "admin/addBook";
 	}
 	

@@ -4,6 +4,7 @@ package com.sahariar.librarymanagement.Library.Management.Models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,8 +22,13 @@ public class Author {
 	private String name;
 	private String description;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="authors",fetch = FetchType.LAZY)
 	private List<Book> books;
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", name=" + name + ", description=" + description + "]";
+	}
 
 	public int getId() {
 		return id;

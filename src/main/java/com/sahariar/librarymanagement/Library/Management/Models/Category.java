@@ -3,6 +3,7 @@ package com.sahariar.librarymanagement.Library.Management.Models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Category {
 	private String name;
 	private String description;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="categories",fetch = FetchType.LAZY)
 	private List<Book> books;
 	public int getId() {
 		return id;
@@ -46,7 +47,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", books=" + books + "]";
+		return "Category [id=" + id + ", name=" + name + ", description=" + description +"]";
 	}
 	
 	
