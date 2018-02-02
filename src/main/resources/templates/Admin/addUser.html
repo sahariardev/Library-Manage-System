@@ -6,7 +6,7 @@
 	<div class="container mainContent">
 
 		<div class="topmar-50 bottommar-50">
-			<div class="dounbleborder center textColor2 pad10">Add new Author</div>
+			<div class="dounbleborder center textColor2 pad10">Add new user</div>
 
 			<div class="row">
 				<div class="col-md-3">
@@ -20,21 +20,32 @@
 				<div class="col-md-9">
 					<div class="formContainer whiteBack automar topmar-50  shadow">
 					    <div th:if="${isMessage}">
-					      <div th:text="${message}">One Author added</div>
+					      <div th:text="${message}">One user added</div>
 					    </div>
-						<form method="post" action="/admin/addAuthor">
+						<form method="post" th:action="@{adduser}">
 							<div class="form-group">
-								<label for="exampleInputEmail1">Author name</label> <input
-									type="text" class="form-control" 
+								<label for="labelforusername">User name</label> <input
+									type="text" class="form-control" id="exampleInputEmail1"
 									aria-describedby="emailHelp" name="name" placeholder="Jhon Doe" />
 								<small id="emailHelp" class="form-text text-muted">write
-									author full name</small>
+									user full name</small>
 							</div>
+							<div class="form-group">
+								<label for="labelforusername">Email</label> <input
+									type="text" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" name="email" placeholder="Jhon Doe" />
 								
+							</div>
+							<div class="form-group">
+								<label for="labelforstudentid">Student id</label> <input
+									type="text" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" name="id" placeholder="Jhon Doe" />
+								
+							</div>
 
 							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Description</label>
-								<textarea class="form-control" name="description" id="exampleFormControlTextarea1"
+								<label for="exampleFormControlTextarea1">Address</label>
+								<textarea class="form-control" name="address" id="exampleFormControlTextarea1"
 									rows="6"></textarea>
 							</div>
 							<input type="hidden" 

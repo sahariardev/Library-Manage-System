@@ -19,6 +19,7 @@ public class User {
 	private String email;
 	private String name;
 	private String address;
+	private String  student_id;
 	private String role;
 	private String password;
 	@OneToOne(mappedBy="user")
@@ -77,6 +78,12 @@ public class User {
 	}
 	public void setBorrow(Borrow borrow) {
 		this.borrow = borrow;
+	}
+	public String getStudent_id() {
+		return student_id;
+	}
+	public void setStudent_id(String student_id) {
+		this.student_id = student_id;
 	}
 	
 	

@@ -1,7 +1,5 @@
 package com.sahariar.librarymanagement.Library.Management.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +10,11 @@ import org.springframework.web.context.request.WebRequest;
 import com.sahariar.librarymanagement.Library.Management.Models.Author;
 import com.sahariar.librarymanagement.Library.Management.Models.Book;
 import com.sahariar.librarymanagement.Library.Management.Models.Category;
+import com.sahariar.librarymanagement.Library.Management.Models.User;
 import com.sahariar.librarymanagement.Library.Management.Service.AuthorService;
 import com.sahariar.librarymanagement.Library.Management.Service.BookService;
 import com.sahariar.librarymanagement.Library.Management.Service.CategoryService;
+import com.sahariar.librarymanagement.Library.Management.Service.UserService;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,16 +26,45 @@ public class AdminController {
 	CategoryService cs;
 	@Autowired 
 	BookService bs;
+	@Autowired
+	UserService us;
 	
 	
 	@RequestMapping("/dashboard")
-	public String dashboard()
+	public String dashboard(Model model)
 	{
 		
-		
+		model.addAttribute("isMessage", false);
 		return "admin/dashboard";
 	}
 	
+	@RequestMapping("/adduser")
+	public String addUser(Model model)
+	{
+		model.addAttribute("isMessage", false);
+		return "admin/addUser";
+		
+		
+	}
+	@RequestMapping(value="/adduser" ,method=RequestMethod.POST)
+	public String addUserToDatabase(Model model, WebRequest request)
+	{
+		
+		String name=request.getParameter("name");
+		String student_id=request.getParameter("id");
+		String email=request.getParameter("email");
+		String address=request.getParameter("address");
+		User user =new User();
+		user.setAddress(address);
+		user.setEmail(email);
+		user.setName(name);
+		user.setStudent_id(student_id);
+		user.setRole("ROLE_USER");
+		us.add(user);
+		model.addAttribute("message", user.getName()+" added.");
+		model.addAttribute("isMessage", true);
+		return "admin/addUser";
+	}
 	@RequestMapping(value="/addbook")
 	public String addBook(Model model)
 	{
