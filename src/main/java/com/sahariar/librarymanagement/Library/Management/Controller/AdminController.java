@@ -1,6 +1,7 @@
 package com.sahariar.librarymanagement.Library.Management.Controller;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import com.sahariar.librarymanagement.Library.Management.Models.Category;
 import com.sahariar.librarymanagement.Library.Management.Models.User;
 import com.sahariar.librarymanagement.Library.Management.Service.AuthorService;
 import com.sahariar.librarymanagement.Library.Management.Service.BookService;
+import com.sahariar.librarymanagement.Library.Management.Service.BorrowService;
 import com.sahariar.librarymanagement.Library.Management.Service.CategoryService;
 import com.sahariar.librarymanagement.Library.Management.Service.UserService;
 
@@ -31,6 +33,9 @@ public class AdminController {
 	BookService bs;
 	@Autowired
 	UserService us;
+	
+	@Autowired
+	BorrowService bos;
 	
 	
 	@RequestMapping("/dashboard")
@@ -101,31 +106,49 @@ public class AdminController {
 		return "admin/addBook";
 	}
 	
-	@RequestMapping("/issueBook")
+	@RequestMapping("/issuebook")
 	public String issuebook(Model model)
 	{
 		 model.addAttribute("isMessage", false);
 		return "admin/issueBook";
 	}
-	@RequestMapping(value="/",method=RequestMethod.POST)
+	@RequestMapping(value="/issuebook",method=RequestMethod.POST)
 	public String issueBooktoUser(Model model,WebRequest request)
 	{
-		boolean isAvailable=true;
+		
 		int book_id=Integer.parseInt(request.getParameter("book_id"));
 		int user_id=Integer.parseInt(request.getParameter("user_id"));
-		if(bs.isAvailable(book_id))
+		model.addAttribute("isMessage", true);
+		if(!bs.isAvailable(book_id))
 		{
-			model.addAttribute("Message", "Book is already taken.");
+			model.addAttribute("message", "Book is already taken.");
 			return "admin/issueBook";
 		}
 		
 		Borrow borrow=new Borrow();
 		borrow.setBook(bs.getOne(book_id));
 		borrow.setUser(us.getOne(user_id));
-		borrow.setBorrowedDate(new Date());
+		borrow.setBorrowedDate(getCurrentdate());
+		borrow.setReturnDate(getDateAfterSpecificDays(7));
+		bos.add(borrow);
+		model.addAttribute("message", "Book is Issued for "+user_id);
 		return "admin/issueBook";
 	}
 	
+	public Date getCurrentdate()
+	{
+		return new Date(new java.util.Date().getTime());
+	}
+	public Date getDateAfterSpecificDays(int days)
+	{
+		Date now=getCurrentdate();
+		Calendar c=Calendar.getInstance();
+		c.setTime(now);
+		c.add(Calendar.DATE, days);
+		
+		return new Date(c.getTimeInMillis());
+		
+	}
 	public String editBook()
 	{
 		return "admin/editbook";
