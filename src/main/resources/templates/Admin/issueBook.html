@@ -3,10 +3,12 @@
 <head th:replace="layouts/header::header"></head>
 
 <body>
+<div th:replace="layouts/head::head">
+</div>
 	<div class="container mainContent">
 
-		<div class="topmar-50 bottommar-50">
-			<div class="dounbleborder center textColor2 pad10">Issue book</div>
+		<div class="bottommar-50">
+			
 
 			<div class="row">
 				<div class="col-md-3">
@@ -18,6 +20,9 @@
 				</div>
 
 				<div class="col-md-9">
+				<div class=" automar topmar-50 max-width-500 ">
+				<div class="dounbleborder center textColor2 pad10 shadow">Issue Book</div>
+				</div>
 					<div class="formContainer whiteBack automar topmar-50  shadow">
 					    <div th:if="${isMessage}">
 					      <div th:text="${message}">Issued book</div>
@@ -52,7 +57,8 @@
 
 	</div>
 
-
+<div th:replace="layouts/footer::footer">
+</div>
 
 </body>
 </html>

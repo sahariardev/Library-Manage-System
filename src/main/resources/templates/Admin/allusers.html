@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header::header"></head>
+
+<body>
+<div th:replace="layouts/head::head">
+</div>
+	<div class="container mainContent">
+
+		<div class="bottommar-50">
+			
+
+			<div class="row">
+				<div class="col-md-3">
+
+					<div th:replace="layouts/menu::menu"></div>
+
+
+				</div>
+
+				<div class="col-md-9">
+				<div class=" automar topmar-50 max-width-500 ">
+				<div class="dounbleborder center textColor2 pad10 shadow">Add Users</div>
+				</div>
+					<div class="formContainer whiteBack automar topmar-50  shadow maxheight-600">
+						<div>
+
+							<table class="table ">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Name</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="user : ${users}">
+										<td th:text="${user.getId()}">John</td>
+										<td th:text="${user.getName()}">Doe</td>
+										<td style="cursor:pointer">Delete</td>
+									</tr>
+
+								</tbody>
+							</table>
+							
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+
+<div th:replace="layouts/footer::footer">
+</div>
+</body>
+</html>
