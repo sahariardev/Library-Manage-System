@@ -1,5 +1,7 @@
 package com.sahariar.librarymanagement.Library.Management.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,9 @@ public class UserService {
 	public User getOne(int id)
 	{
 		return ur.findOne(id);
+	}
+	public List<User> getAll()
+	{
+		return ur.findAll();
 	}
 }

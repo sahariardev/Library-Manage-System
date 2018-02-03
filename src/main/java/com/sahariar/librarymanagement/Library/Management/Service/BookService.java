@@ -27,6 +27,10 @@ public class BookService {
 	{
 		return br.findOne(id);
 	}
+	public List<Book> getAll()
+	{
+		return (List<Book>)br.findAll();
+	}
 	public boolean isAvailable(int id)
 	{
 		List<Borrow> borrows=bor.findByBookIdAndReturned(id, 0);

@@ -2,6 +2,7 @@ package com.sahariar.librarymanagement.Library.Management.Controller;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,22 @@ public class AdminController {
 		
 		model.addAttribute("isMessage", false);
 		return "admin/dashboard";
+	}
+	
+	@RequestMapping("/allusers")
+	public String allusers(Model model)
+	{
+		List<User> users=us.getAll();
+		model.addAttribute("users", users);
+		return "admin/allusers";
+	}
+	
+	@RequestMapping("/allbooks")
+	public String allbooks(Model model)
+	{
+		List<Book> books=bs.getAll();
+		model.addAttribute("books", books);
+		return "admin/allbooks";
 	}
 	
 	@RequestMapping("/adduser")
