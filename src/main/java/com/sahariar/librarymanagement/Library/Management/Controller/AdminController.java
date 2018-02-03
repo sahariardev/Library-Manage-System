@@ -134,7 +134,25 @@ public class AdminController {
 		model.addAttribute("message", "Book is Issued for "+user_id);
 		return "admin/issueBook";
 	}
-	
+	@RequestMapping("/acceptbook")
+	public String acceptbook(Model model)
+	{
+		 model.addAttribute("isMessage", false);
+		return "admin/returnBook";
+	}
+	@RequestMapping(value="/acceptbook",method=RequestMethod.POST)
+	public String acceptBookdatabase(Model model,WebRequest request)
+	{
+		int book_id=Integer.parseInt(request.getParameter("book_id"));
+		
+		
+		bos.receiveBook(book_id);
+		
+		
+		model.addAttribute("message", "Book received");
+		model.addAttribute("isMessage", true);
+		return "admin/returnBook";
+	}
 	public Date getCurrentdate()
 	{
 		return new Date(new java.util.Date().getTime());

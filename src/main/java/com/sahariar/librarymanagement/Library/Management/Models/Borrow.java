@@ -20,6 +20,13 @@ public class Borrow {
 	//0 means no and 1 means yes
 	private int returned;
 	
+	
+	public int getReturned() {
+		return returned;
+	}
+	public void setReturned(int returned) {
+		this.returned = returned;
+	}
 	@ManyToOne
 	private User user;
 	

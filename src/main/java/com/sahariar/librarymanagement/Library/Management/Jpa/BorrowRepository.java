@@ -9,4 +9,5 @@ import com.sahariar.librarymanagement.Library.Management.Models.Borrow;
 public interface BorrowRepository extends JpaRepository<Borrow, Integer> {
 
 	public List<Borrow> findByBookIdAndReturned(int id,int r);
+	
 }
