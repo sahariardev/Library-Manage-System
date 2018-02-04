@@ -41,4 +41,9 @@ public class BookService {
 		}
 		return true;
 	}
+	
+	public List<Book> search(String name)
+	{
+		return br.findByNameIgnoreCaseContaining(name);
+	}
 }
