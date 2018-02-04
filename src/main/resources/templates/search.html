@@ -45,9 +45,30 @@
 						
 
 							
-							<div th:text="${books}">
-							
-							</div>
+							<table class="table ">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Name</th>
+										<th>Author</th>
+										<th>Borrow</th>
+										<th>Call Number</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="book : ${books}">
+										<td th:text="${book.getId()}">John</td>
+										<td th:text="${book.getName()}">Doe</td>
+										
+										<td th:each="author : ${book.getAuthors()}"><span th:text="${author.getName()}"></span></td>
+										<td th:if="${book.getBorrow().getReturned()}==0">Not Available</td>
+										<td th:if="${book.getBorrow().getReturned()}==1">Available</td>
+										<td >R8C2</td>
+									</tr>
+
+								</tbody>
+							</table>
 
 						
 					</div>
