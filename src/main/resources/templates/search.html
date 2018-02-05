@@ -7,12 +7,21 @@
 	<div class="container mainContent">
 
 		<div class="bottommar-50">
-
+            <div class="pad-20">
+              <div class="dounbleborder center textColor2 pad10 shadow">How to use library</div>
+            <div class="whiteBack automar topmar-50  shadow ">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet 
+             neque felis. Mauris fermentum, ante id interdum finibus, nunc nibh mattis erat, 
+             non placerat orci mauris in est. Nam faucibus erat quis est sollicitudin, eget fermentum m
+             i venenatis. Aenean pharetra imperdiet posuere. 
+             Morbi tincidunt sem ut elit vehicula,
+            </div>
+            </div> 
 
 			<div class="row">
 				<div class="col-md-6">
 				<div class=" automar topmar-50 max-width-500">
-						<div class="dounbleborder center textColor2 pad10">Search Books</div>
+						<div class="dounbleborder center textColor2 pad10 shadow">Search Books</div>
 					</div>
 					<div
 						class="formContainer whiteBack automar topmar-50  shadow maxheight-600">
@@ -37,14 +46,14 @@
 
 				<div class="col-md-6">
 					<div class=" automar topmar-50 max-width-500">
-						<div class="dounbleborder center textColor2 pad10">Search Result</div>
+						<div class="dounbleborder center textColor2 pad10 shadow">Search Result</div>
 					</div>
 					<div
 						class="formContainer whiteBack automar topmar-50  shadow maxheight-600">
 						
 
-							
-							<table class="table ">
+							<div th:if="${isMessage}">
+							<table  class="table ">
 								<thead>
 									<tr>
 										<th>Id</th>
@@ -68,6 +77,10 @@
 
 								</tbody>
 							</table>
+							</div>
+							<div th:unless="${isMessage}">
+							 No search result
+							</div>
 
 						
 					</div>
@@ -75,6 +88,16 @@
 				</div>
 
 			</div>
+			<div class="pad-20 topmar-50">
+              <div class="dounbleborder center textColor2 pad10 shadow">Who we are</div>
+            <div class="whiteBack automar topmar-50  shadow ">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet 
+             neque felis. Mauris fermentum, ante id interdum finibus, nunc nibh mattis erat, 
+             non placerat orci mauris in est. Nam faucibus erat quis est sollicitudin, eget fermentum m
+             i venenatis. Aenean pharetra imperdiet posuere. 
+             Morbi tincidunt sem ut elit vehicula,
+            </div>
+            </div> 
 
 
 		</div>
