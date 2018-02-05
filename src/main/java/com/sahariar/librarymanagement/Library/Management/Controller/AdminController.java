@@ -111,6 +111,7 @@ public class AdminController {
 		Book book = new Book();
 		book.setName(request.getParameter("name"));
 		book.setDescription(request.getParameter("description"));
+		book.setCallnumber(request.getParameter("callnumber"));
 
 		book.setAuthors(as.getSpecefic(strArrayToInt(author_id)));
 		book.setCategories(cs.getSpecefic(strArrayToInt(category_id)));

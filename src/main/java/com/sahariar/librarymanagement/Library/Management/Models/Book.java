@@ -23,7 +23,7 @@ public class Book {
 	
     private String name;
 	private String description;
-	
+	public String callnumber;
 	
 	//relationships
 	@OneToOne(mappedBy="book")
@@ -86,13 +86,32 @@ public class Book {
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
 	}
+       
+	public String getCallnumber() {
+		return callnumber;
+	}
+
+	public void setCallnumber(String callnumber) {
+		this.callnumber = callnumber;
+	}
 
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", description=" + description + ", borrow=" + borrow
 				+ ", categories=" + categories + ", authors=" + authors + "]";
 	} 
-	
+	public boolean isAvailable()
+	{
+		if(getBorrow()==null)
+		{
+			return true;
+		}
+		if(getBorrow().getReturned()==0)
+		{
+			return false;
+		}
+		return true;
+	}
 	
 	
 	

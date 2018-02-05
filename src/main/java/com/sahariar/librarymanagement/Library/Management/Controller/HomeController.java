@@ -18,15 +18,7 @@ public class HomeController {
 	BookService bookservice;
 
 	
-	@RequestMapping("/")
-	public String getHome(WebRequest request)
-	{
 		
-		
-		
-		return "home";
-	}
-	
 	
 	@RequestMapping("/404")
 	public String error()
@@ -41,7 +33,7 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/search")
+	@RequestMapping(value="/")
 	public String search(Model model,WebRequest request)
 	{
 		String name=request.getParameter("search");
