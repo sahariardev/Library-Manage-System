@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Category {
 	
@@ -19,6 +21,7 @@ public class Category {
 	private String name;
 	private String description;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy="categories",fetch = FetchType.LAZY)
 	private List<Book> books;
 	public int getId() {

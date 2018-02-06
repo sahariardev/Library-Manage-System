@@ -1,10 +1,8 @@
 package com.sahariar.librarymanagement.Library.Management.Models;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Book {
@@ -27,14 +28,17 @@ public class Book {
 	public String callnumber;
 	
 	//relationships
+	@JsonIgnore
 	@OneToOne(mappedBy="book")
 	private Borrow borrow;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="book_category",joinColumns=@JoinColumn(name="book_id")
 	,inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Set<Category> categories;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="book_author",joinColumns=@JoinColumn(name="book_id")
 	,inverseJoinColumns=@JoinColumn(name="author_id"))

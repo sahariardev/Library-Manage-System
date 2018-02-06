@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Author {
 	
@@ -22,6 +24,7 @@ public class Author {
 	private String name;
 	private String description;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy="authors",fetch = FetchType.LAZY)
 	private List<Book> books;
 
