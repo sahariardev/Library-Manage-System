@@ -3,6 +3,7 @@ package com.sahariar.librarymanagement.Library.Management.Models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +23,8 @@ public class User {
 	private String  student_id;
 	private String role;
 	private String password;
-	@OneToOne(mappedBy="user")
-	private Borrow borrow;
+	@OneToMany(mappedBy="user")
+	private List<Borrow> borrow;
 	
 	@OneToMany(mappedBy="user")
 	private List<Penalty> penalty;
@@ -73,17 +74,18 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Borrow getBorrow() {
-		return borrow;
-	}
-	public void setBorrow(Borrow borrow) {
-		this.borrow = borrow;
-	}
+	
 	public String getStudent_id() {
 		return student_id;
 	}
 	public void setStudent_id(String student_id) {
 		this.student_id = student_id;
+	}
+	public List<Borrow> getBorrow() {
+		return borrow;
+	}
+	public void setBorrow(List<Borrow> borrow) {
+		this.borrow = borrow;
 	}
 	
 	
